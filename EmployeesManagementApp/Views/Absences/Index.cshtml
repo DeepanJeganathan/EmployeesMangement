@@ -1,0 +1,168 @@
+﻿@model IEnumerable<EmployeesManagementApp.ViewModel.AbsenceIndexViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<hr />
+<h4>Absence Tracker <i class="fas fa-file-contract"></i></h4>
+<p class="text-muted">Maintenance not included</p>
+<hr />
+<p>
+    <a asp-action="Create"><i class="fas fa-plus"></i>Create New </a>
+ 
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfAbsences)
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            
+                <th class=" hide-on-phone">
+                    @Html.DisplayNameFor(model => model.StepOne)
+                </th>
+                <th class=" hide-on-phone">
+                    @Html.DisplayNameFor(model => model.StepOneDate)
+                </th>
+                <th class=" hide-on-phone">
+                    @Html.DisplayNameFor(model => model.StepTwo)
+                </th>
+                <th class=" hide-on-phone">
+                    @Html.DisplayNameFor(model => model.StepTwoDate)
+                </th>
+                <th class=" hide-on-phone">
+                    @Html.DisplayNameFor(model => model.StepThree)
+                </th>
+                <th class=" hide-on-phone">
+                    @Html.DisplayNameFor(model => model.StepThreeDate)
+                </th>
+
+                <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <h4><b> @Html.DisplayFor(modelItem => item.NumberOfAbsences)</b></h4>
+            </td>
+            <td>
+                <a asp-controller="employees" asp-action="details" asp-route-id="@item.EmployeeNumber"><i class="fas fa-user"></i> &nbsp; @Html.DisplayFor(modelItem => item.Employee.FirstName)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.LastName)
+            </td>
+            @if (item.NumberOfAbsences < 8)
+            {
+                <td class=" hide-on-phone">
+                    <text>N/A</text>
+                </td>
+            }
+            else
+            {
+                @if (item.StepOne == true)
+                {
+                    <td class="text-success text-center hide-on-phone">
+                        <i class="fas fa-check"></i>
+                    </td>
+                }
+                else
+                {
+                    <td class="text-danger text-center hide-on-phone">
+                        <i class="fas fa-exclamation"></i> Pending
+                    </td>
+                }
+            }
+            @if (item.StepOneDate == null)
+            {
+                <td class=" hide-on-phone">
+                </td>
+            }
+            else
+            {
+                <td class=" hide-on-phone">
+                    @item.StepOneDate.Value.ToString("MM/dd/yyyy")
+                </td>
+            }
+
+            @if (item.NumberOfAbsences < 10)
+            {
+                <td class=" hide-on-phone">
+                    <text>N/A</text>
+                </td>
+            }
+            else
+            {
+                @if (item.StepTwo == true)
+                {
+                    <td class="text-success text-center hide-on-phone">
+                        <i class="fas fa-check "></i>
+                    </td>
+                }
+                else
+                {
+                    <td class="text-danger text-center hide-on-phone">
+                        <i class="fas fa-exclamation "></i> Pending
+                    </td>
+                }
+            }
+            @if (item.StepTwoDate == null)
+            {
+                <td class=" hide-on-phone">
+                </td>
+            }
+            else
+            {
+                <td class=" hide-on-phone">
+                    @item.StepTwoDate.Value.ToString("MM/dd/yyyy")
+                </td>
+            }
+            @if (item.NumberOfAbsences < 15)
+            {
+                <td class=" hide-on-phone">
+                    <text>N/A</text>
+                </td>
+            }
+            else
+            {
+                @if (item.StepThree == true)
+                {
+                    <td class="text-success text-center hide-on-phone">
+                        &nbsp;<i class="fas fa-check "></i>
+                    </td>
+                }
+                else
+                {
+                    <td class="text-danger text-center  hide-on-phone">
+                        <i class="fas fa-exclamation "></i> Pending
+                    </td>
+                }
+            }
+            @if (item.StepThreeDate == null)
+            {
+                <td class=" hide-on-phone">
+                </td>
+            }
+            else
+            {
+                <td class=" hide-on-phone">
+                    @item.StepThreeDate.Value.ToString("MM/dd/yyyy")
+                </td>
+            }
+
+            <td class=" hide-on-phone">
+                <a asp-action="Edit" asp-route-id="@item.AbsenceTrackerId">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.AbsenceTrackerId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,347 @@
+﻿/*
+ * Base structure
+ */
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+   
+}
+
+/*main nav*/
+
+.main-nav {
+    background-color: #4365ab;    
+}
+
+    .main-nav a {
+        color: #ffffff;
+    }
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+
+    .navbar-inverse .navbar-nav > li > a:hover {
+        color: #b9b9b9;
+    }
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-nav > li > a{
+    font-size:1.75rem;
+}
+
+/*suggestions search on employee index view*/
+
+.searchbox-area {
+    position: relative; 
+    
+}
+
+
+.suggestions {
+    position: absolute;
+}
+
+    .suggestions > li {
+        position: relative;
+        left: 85px;
+        top: -14px;
+        z-index: 1;
+        background: white;
+        list-style: none;
+        border-bottom: 1px solid #D8D8D8;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+        margin: 0;
+        padding: 10px 87px 10px 10px;
+        transition: background 0.2s;
+        justify-content: space-between;
+        text-transform: capitalize;
+     
+    }
+
+    .suggestions > li:hover {
+        background-color: gainsboro;
+        cursor:pointer;
+       
+    }
+
+@media only screen and (max-width: 440px) {
+    /* remove */
+    .suggestions > li {
+        position: relative;
+        left: 81px;
+        top: -42px;
+        z-index: 1;
+        background: white;
+        list-style: none;
+        border-bottom: 1px solid #D8D8D8;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+        margin: 0;
+        padding: 10px;
+        transition: background 0.2s;
+        justify-content: space-between;
+        text-transform: capitalize;
+    }
+
+  
+}
+
+    /*content screen size smaller than 1540px*/
+    @media only screen and (max-width: 1540px) {
+        /* remove */
+        .nav-search {
+                display: none;
+            }
+
+           
+        }
+
+    /*remove signin on nav bar*/
+@media only screen and (max-width: 1260px) {
+    /* remove */
+    .sign-in {
+        display: none;
+    }
+}
+@media only screen and (max-width: 1025px) {
+    /* remove */
+    .navbar-header {
+        float: none;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+        .navbar-collapse.collapse {
+            display: none !important;
+        }
+
+    .navbar-nav {
+        float: none !important;
+        margin: 7.5px -15px;
+    }
+
+        .navbar-nav > li {
+            float: none;
+        }
+
+            .navbar-nav > li > a {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                
+            }
+
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+
+    .collapsing {
+        overflow: hidden !important;
+    }
+}
+
+
+
+    /* remove */
+    .active .dashboard {
+        display: none;
+    }
+
+    /*main-section*/
+    .main-area {
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        bottom: 0px;
+        width: 100vw;
+        height: 100%;
+    }
+
+    /*sidebar*/
+
+.sidebar {
+    position: fixed;
+    background: rgb(78,96,152);
+    background: linear-gradient(270deg, rgba(78,96,152,1) 0%, rgba(36,34,64,1) 6%);
+    /*background: #383842;*/
+    height: auto;
+    bottom: 0;
+    top: 50px;
+    font-size: 1.75rem;
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+    .sidebar a {
+        color: #ffffff;
+        padding: 20px 15px;
+        font-size: 2rem;
+    }
+
+        
+
+    .nav > li > a:hover {
+        background-color: #4365ab;
+    }
+
+.sidebar li > a {
+    padding: 12px 5px 16px 29px;
+}
+
+
+#overview {
+    font-size: 2.2rem;
+    color: #7d4e2c;
+    padding: 16px 0px 0px 8px;
+}
+
+    /*panel*/
+
+    .main-panel {
+        height: 100vh;
+        padding-left: 30px;
+    }
+
+    .legend > .fa-user{
+        padding-right:5px;
+        margin-right:5px;
+    }
+
+    /*well*/
+    .well {
+        min-height: 20px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #F8F8F8;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    }
+
+    .panel-body {
+        background-color: #E8E8E8;
+        height: 145px !important;
+    }
+
+    @media only screen and (max-width: 960px) {
+        /* remove */
+
+        .well > h3, .h3 {
+            font-size: 16px;
+        }
+
+        .panel-body {
+            height: 125px !important;
+        }
+    }
+
+
+    /*Employee panel active search btns*/
+
+
+.active-btns > form {
+    float:right;
+    margin-left:10px;
+}
+
+.active-btns >i{
+    margin-right:10px;
+}
+
+
+/*SearchByWorkstation page*/
+.searchByWorkstation-style {
+    font-size: 1.75rem;
+}
+
+@media only screen and (max-width: 400px) {
+    .searchByWorkstation-style {
+        font-size: 1.25rem;
+    }
+}
+
+    /*optimize for iphone*/
+
+    @media only screen and (max-width: 400px) {
+        /* remove */
+
+        .hide-on-phone {
+            display: none;
+        }
+    }
+
+
+
+
+    /*Employee index Page*/
+
+    .icon-spacing {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    /*Employee details Page*/
+    .print {
+        position: relative;
+        left: 75%;
+        top: 10px;
+        padding: 5px 30px 5px 30px;
+        font-size: 1.5rem;
+        background-color: #4365ab;
+        outline: none;
+        color: #ffffff;
+    }
+
+.employee-detail{
+    padding-left:10px;
+}
+
+.employee-detail-comments {
+    padding: 5px 10px 5px 0px;
+}
+
+@media only screen and (max-width: 400px) {
+    .print {
+        position: relative;
+        left:67%;
+        top: 14px;
+        
+    }
+
+    
+}
+
+
+/*shipping index page*/
+.icon-spacing-shipping {
+    display: flex;
+    justify-content: center;
+}
+
+        .icon-spacing-shipping > a > i {
+            padding-right: 40px;
+        }
+    /*Discipline index page*/
+    .discipline-date-font {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: darkred;
+    }
+

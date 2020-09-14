@@ -1,0 +1,68 @@
+﻿@model IEnumerable<EmployeesManagementApp.ViewModel.CommentViewModel.CommentIndexViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+<h4>Employee Comments <i class="far fa-comment-alt"></i></h4>
+<p>20 Most Recent Comments</p>
+<hr />
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                  @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th class="hide-on-phone">
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Post)
+            </th>
+            <th class="hide-on-phone">
+                @Html.DisplayNameFor(model => model.SubmittedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*@if (item.Date.AddDays(3) > DateTime.Now)
+        {
+            <span class="text-success">*New</span>
+        }*@
+                    <b style="color:darkred;">  @Html.DisplayFor(modelItem => item.Title)</b>
+                    <span class="text-muted">@((DateTime.Now - item.Date).Days) days ago</span>
+                </td>
+                <td class="hide-on-phone">
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.Post)
+                </td>
+                <td class="hide-on-phone">
+                    <strong>@Html.DisplayFor(modelItem => item.SubmittedBy)</strong>
+                </td>
+                <td>
+                    <a asp-controller="employees" asp-action="details" asp-route-id="@item.EmployeeNumber"><i class="far fa-id-card"></i> @Html.DisplayFor(modelItem => item.Employee.EmployeeNumber)</a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CommentId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CommentId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CommentId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

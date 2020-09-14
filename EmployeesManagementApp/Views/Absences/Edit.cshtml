@@ -1,0 +1,74 @@
+﻿@model EmployeesManagementApp.ViewModel.AbsenceViewModels.AbsenceEditViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Absence</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AbsenceTrackerId" />
+            <div class="form-group">
+                <label asp-for="NumberOfAbsences" class="control-label"></label>
+                <input asp-for="NumberOfAbsences" class="form-control" />
+                <span asp-validation-for="NumberOfAbsences" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StepOne" class="control-label"></label>
+                <select asp-for="StepOne" class="form-control">
+                    <option value="true"> Completed</option>
+                    <option value="false">Not Complete</option>
+                </select>
+                <span asp-validation-for="StepOne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StepOneDate" class="control-label"></label>
+                <input asp-for="StepOneDate" class="form-control" />
+                <span asp-validation-for="StepOneDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StepTwo" class="control-label"></label>
+                <select asp-for="StepTwo" class="form-control">
+                    <option value="true"> Completed</option>
+                    <option value="false">Not Complete</option>
+                </select>
+                <span asp-validation-for="StepTwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StepTwoDate" class="control-label"></label>
+                <input asp-for="StepTwoDate" class="form-control" />
+                <span asp-validation-for="StepTwoDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StepThree" class="control-label"></label>
+                <select asp-for="StepThree" class="form-control">
+                    <option value="true"> Completed</option>
+                    <option value="false">Not Complete</option>
+                </select>
+                <span asp-validation-for="StepThree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StepThreeDate" class="control-label"></label>
+                <input asp-for="StepThreeDate" class="form-control" />
+                <span asp-validation-for="StepThreeDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label > Employee Number</label>
+                <select asp-for="EmployeeNumber" class="form-control" asp-items="ViewBag.EmployeeNumber"></select>
+                <span asp-validation-for="EmployeeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

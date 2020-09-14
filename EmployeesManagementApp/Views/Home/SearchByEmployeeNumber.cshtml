@@ -1,0 +1,124 @@
+﻿
+@model EmployeesManagementApp.ViewModel.HomeFlowViewModel
+@{
+    ViewData["Title"] = "SearchByEmployeeNumber";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<hr />
+<h4>Search By Employee Number</h4>
+<hr />
+
+<div class="well-sm">
+    <form asp-action="SearchByEmployeeNumber" method="get">
+        <div class="form-group">
+            <label>Enter Employee Number </label>
+            <input type="text" class="form-control" name="search" placeholder="Must be 4 digits" value="@ViewData["currentFilter"]" />
+
+        </div>
+        <button type="submit" value="Search" class="btn btn-primary"> Search</button>
+        <a asp-action="SearchByEmployeeNumber">Clear Search</a>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+@if (Model.Employees.Any())
+{
+    if (@ViewData["currentFilter"] != null)
+    {
+        <h5> Search results for : @ViewData["currentFilter"]</h5>
+    }
+
+
+
+    <hr />
+    <table class="table table-bordered table-hover ">
+
+        <thead>
+            <tr>
+                <th>
+                    Employee Number
+                </th>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+
+                </th>
+
+                <th>
+                    Pay Level
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+
+            @foreach (var item in Model.Employees)
+            {
+
+
+                <tr>
+
+                    <td>
+                        <a asp-controller="Employees"
+                           asp-action="Details"
+                           asp-route-id="@item.EmployeeNumber"> @Html.DisplayFor(model => item.EmployeeNumber)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.LastName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => item.PayLevel)
+                    </td>
+                </tr>
+            }
+
+
+
+
+
+
+            @*<a asp-action="Edit" asp-route-id="@item.EmployeeNumber">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeeNumber">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeNumber">Delete</a>*@
+
+
+        </tbody>
+    </table>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

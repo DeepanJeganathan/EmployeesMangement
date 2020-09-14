@@ -1,0 +1,78 @@
+﻿@model IEnumerable<EmployeesManagementApp.ViewModel.SupervisorViewModels.SupervisorIndexViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<hr />
+<h4>Supervisor Details </h4>
+<hr />
+<p>
+    <a asp-action="Create"><i class="fas fa-user-plus"></i> &nbsp;Create New</a>
+</p>
+
+
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SupervisorFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupervisorLastName)
+            </th>
+            <th class="hide-on-phone">
+                @Html.DisplayNameFor(model => model.SupervisorTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtensionNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstAid)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <i class="fas fa-user-tie"></i> @Html.DisplayFor(modelItem => item.SupervisorFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupervisorLastName)
+            </td>
+            <td class="hide-on-phone">
+                @Html.DisplayFor(modelItem => item.SupervisorTitle)
+            </td>
+            <td>
+                <strong> @Html.DisplayFor(modelItem => item.ExtensionNumber)</strong>
+            </td>
+            @if (item.FirstAid < DateTime.Now)
+            {
+        <td class="text-danger text-justify">
+            <i class="fas fa-first-aid fa-1x"></i> @Html.DisplayFor(modelItem => item.FirstAid) <strong> !</strong>
+        </td>
+            }
+            @if (item.FirstAid > DateTime.Now.AddDays(120))
+            {
+        <td >
+            <i class=" text-danger fas fa-first-aid fa-1x"></i> @Html.DisplayFor(modelItem => item.FirstAid)
+        </td>
+            }
+            @if (item.FirstAid < DateTime.Now.AddDays(120) && item.FirstAid > DateTime.Now)
+            {
+        <td class="text-warning ">
+            <i class="fas fa-first-aid fa-1x "></i> @Html.DisplayFor(modelItem => item.FirstAid)
+        </td>
+            }
+            <td class="hide-on-phone">
+                <a  asp-action="Edit" asp-route-id="@item.SupervisorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SupervisorId">Details</a> |
+                <a  asp-action="Delete" asp-route-id="@item.SupervisorId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

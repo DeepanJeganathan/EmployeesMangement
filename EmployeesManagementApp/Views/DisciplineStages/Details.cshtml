@@ -1,0 +1,71 @@
+﻿@model EmployeesManagementApp.Models.DisciplineStage
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DisciplineStage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VerbalWarning)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VerbalWarning)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Written)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Written)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OneDay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OneDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreeDay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThreeDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FiveDay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FiveDay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TwoWeek)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TwoWeek)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirtyDay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThirtyDay)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Employee.FirstName) @Html.DisplayFor(model => model.Employee.LastName) <a asp-controller="employees" asp-action="details" asp-route-id="@Model.EmployeeNumber"> <i class="fas fa-info-circle fa-1x"></i></a>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DisciplineStageId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

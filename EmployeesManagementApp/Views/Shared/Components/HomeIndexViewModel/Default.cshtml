@@ -1,0 +1,54 @@
+﻿@model EmployeesManagementApp.ViewModel.HomeIndexViewModel
+
+<h2><span class="glyphicon glyphicon-cog" aria-hidden="true" id="icon"></span> BELDEN<small> Hr Management</small></h2>
+
+<div class="panel panel-default hidden-xs ">
+    <div class="panel-body">
+        <div class="row placeholders" id="well-icons">
+            <div class="col-xs-6 col-sm-4 placeholder">
+                <div class="well icon">
+                    <h3 class="text-center"> <i class="fas fa-users"></i><br /> <span class="employee-counter"> </span> Employees</h3>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 placeholder">
+                <div class="well icon">
+                    <h3 class="text-center"> <i class="fas fa-user-tie "></i> <br /><span class="supervisor-counter"> </span> Supervisors </h3>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 placeholder">
+                <div class="well icon">
+                    <h3 class="text-center"> <i class="fas fa-person-booth "></i><br /><span class="workstation-counter"> </span> Workstations </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+           document.onload = startCountAnimation();
+           function startCountAnimation(){
+               let employeeElem = document.querySelector('.employee-counter');
+               let SupervisorElem = document.querySelector('.supervisor-counter');
+               let workstationElem = document.querySelector('.workstation-counter');
+
+               let totalEmp =@Model.Employees.Count();
+               let totalSup =@Model.Supervisors.Count();
+               let totalWrk =@Model.Workstations.Count();
+
+               function animateCount(total, element, delay) {
+                   let i = 0;
+                   let start = setInterval(count, delay);
+                   function count() {
+                       if (i == total) {
+                           clearInterval(start);
+                           return;
+                       }
+                       i++;
+                       element.innerHTML = i;
+                   }
+               }
+               animateCount(totalEmp, employeeElem, 20);
+               animateCount(totalSup, SupervisorElem, 200);
+               animateCount(totalWrk, workstationElem, 60);
+           }
+</script>

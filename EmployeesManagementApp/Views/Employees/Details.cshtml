@@ -1,0 +1,152 @@
+﻿@model EmployeesManagementApp.ViewModel.EmployeeDetailViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="panel panel-default">
+    
+    <div class="panel-heading"><h4>Employee Details</h4> </div>
+  
+    <button onclick="window.print()" class="btn print">Print</button>
+   
+        <dl class="dl-horizontal employee-detail">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)  
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PayLevel)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PayLevel)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Utility)
+            </dt>
+            <dd>
+                @if (!Model.Utility == false)
+                {
+                    <text>Yes</text>
+                }
+                else
+                {
+                    <text>No</text>
+                }
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PrimarySkill)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PrimarySkill)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SecondarySkill)
+            </dt>
+            <dd>
+                @if (Model.SecondarySkill == 0 || Model.SecondarySkill == null)
+                {
+                    <span>N/A  <strong>@Html.DisplayNameFor(model => model.SecondarySkillLastOn):</strong>  N/A </span>
+                }
+                else
+                {
+                 
+                <span> @Html.DisplayFor(model => model.SecondarySkill)  <strong>@Html.DisplayNameFor(model => model.SecondarySkillLastOn):</strong>  @Html.DisplayFor(model => model.SecondarySkillLastOn)</span>
+                 }
+                </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ThirdSkill)
+            </dt>
+            <dd>
+                @if (Model.ThirdSkill == 0 || Model.ThirdSkill == null)
+                {
+                    <span>N/A  <strong>@Html.DisplayNameFor(model => model.ThirdSkill):</strong>  N/A </span>
+                }
+                else
+                {
+
+                    <span> @Html.DisplayFor(model => model.ThirdSkill)  <strong>@Html.DisplayNameFor(model => model.ThirdSkillLastOn):</strong>  @Html.DisplayFor(model => model.ThirdSkillLastOn)</span>
+                }
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NoSkill)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NoSkill)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.HireDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.HireDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.status)
+            </dt>
+            <dd>
+                @if (!Model.status == false)
+                {
+                    <text> Active</text>
+                }
+                else
+                {
+                    <text>In Active</text>
+                }
+            </dd>
+            <dt>
+
+                @Html.DisplayNameFor(model => model.FirstAidCertified)
+            </dt>
+            <dd>
+                @if (!Model.FirstAidCertified == false)
+                {
+                    <text> Certified</text>
+                }
+                else
+                {
+                    <text>Not Certified</text>
+                }
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Comments)
+            </dt>
+
+            @foreach (var comment in Model.Comments.OrderByDescending(x => x.Date))
+            {
+        <dd class="employee-detail-comments">
+            @if (comment.Category == Category.Discipline)
+            {
+                <strong class="text-danger">[@Html.DisplayFor(model => comment.Category)] </strong><span class="text-primary">@Html.DisplayFor(model => comment.Title)</span> <br />
+            }
+            else
+            {
+                <strong class="text-muted">[@Html.DisplayFor(model => comment.Category)] </strong><span class="text-primary">@Html.DisplayFor(model => comment.Title)</span> <br />
+
+            }
+            @Html.DisplayFor(model => comment.Date)
+            @Html.DisplayFor(model => comment.Post)
+            <strong>Submitted by: @Html.DisplayFor(model => comment.SubmittedBy)</strong>
+
+        </dd>
+            }
+
+        </dl>
+   
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EmployeeNumber">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

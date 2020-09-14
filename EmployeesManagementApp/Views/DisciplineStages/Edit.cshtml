@@ -1,0 +1,66 @@
+﻿@model EmployeesManagementApp.Models.DisciplineStage
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>DisciplineStage</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="EmployeeNumber" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DisciplineStageId" />
+            <div class="form-group">
+                <label asp-for="VerbalWarning" class="control-label"></label>
+                <input asp-for="VerbalWarning" class="form-control" />
+                <span asp-validation-for="VerbalWarning" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Written" class="control-label"></label>
+                <input asp-for="Written" class="form-control" />
+                <span asp-validation-for="Written" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OneDay" class="control-label"></label>
+                <input asp-for="OneDay" class="form-control" />
+                <span asp-validation-for="OneDay" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ThreeDay" class="control-label"></label>
+                <input asp-for="ThreeDay" class="form-control" />
+                <span asp-validation-for="ThreeDay" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FiveDay" class="control-label"></label>
+                <input asp-for="FiveDay" class="form-control" />
+                <span asp-validation-for="FiveDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwoWeek" class="control-label"></label>
+                <input asp-for="TwoWeek" class="form-control" />
+                <span asp-validation-for="TwoWeek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirtyDay" class="control-label"></label>
+                <input asp-for="ThirtyDay" class="form-control" />
+                <span asp-validation-for="ThirtyDay" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

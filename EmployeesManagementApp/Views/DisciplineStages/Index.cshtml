@@ -1,0 +1,85 @@
+﻿@model IEnumerable<EmployeesManagementApp.Models.DisciplineStage>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr/>
+<h4>Discipline Stage @DateTime.Now.Year</h4>
+<hr />
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class=" table table-hover table-responsive table-bordered discipline-stage-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VerbalWarning)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Written)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OneDay)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ThreeDay)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FiveDay)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.TwoWeek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThirtyDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th class="hidden-sm"></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="discipline-date-font">
+                @Html.DisplayFor(modelItem => item.VerbalWarning)
+            </td>
+            <td class="discipline-date-font">
+                @Html.DisplayFor(modelItem => item.Written)
+            </td>
+            <td class="discipline-date-font">
+                @Html.DisplayFor(modelItem => item.OneDay)
+            </td>
+
+            <td class="discipline-date-font">
+                @Html.DisplayFor(modelItem => item.ThreeDay)
+            </td>
+
+            <td class="discipline-date-font">
+                @Html.DisplayFor(modelItem => item.FiveDay)
+            </td>
+            <td class="discipline-date-font">
+                @Html.DisplayFor(modelItem => item.TwoWeek)
+            </td>
+            <td class="discipline-date-font">
+                @Html.DisplayFor(modelItem => item.ThirtyDay)
+            </td>
+            <td>
+                <a asp-controller="Employees" asp-action="details" asp-route-id="@item.EmployeeNumber"><i class="fas fa-user"></i>  @Html.DisplayFor(modelItem => item.Employee.FirstName)   @Html.DisplayFor(modelItem => item.Employee.LastName) </a>
+            </td>
+            <td class="hidden-sm">
+                <a asp-action="Edit" asp-route-id="@item.DisciplineStageId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.DisciplineStageId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.DisciplineStageId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,36 @@
+﻿@model EmployeesManagementApp.ViewModel.SupervisorViewModels.SupervisorDetailViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Supervisor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SupervisorFirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SupervisorFirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SupervisorLastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SupervisorLastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SupervisorTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SupervisorTitle)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SupervisorId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

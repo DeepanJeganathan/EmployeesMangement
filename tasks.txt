@@ -1,0 +1,21 @@
+create generic for repository
+
+log error on update and save
+
+roles and user management dash board
+
+angular
+
+api
+
+
+what is view imports?
+what is scoped what is transient??
+
+form> what is name? what is value?
+
+what is at rendersection? at render body????
+
+read a little about environment tag?
+
+difference between list and array???

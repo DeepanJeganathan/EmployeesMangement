@@ -1,0 +1,200 @@
+﻿
+@inject SignInManager<IdentityUser> signInManager;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Dashboard</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/css/all.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <script src="https://kit.fontawesome.com/ea0354e0ff.js" crossorigin="anonymous"></script>
+    </environment>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top main-nav ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">BELDEN Admin Panel</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active dashboard"><a asp-controller="Employees" asp-action="Index">Dashboard</a></li>
+                    <li><a asp-controller="Employees" asp-action="Index">Employees</a></li>
+                    <li><a asp-controller="Employees" asp-action="shipping">Shipping</a></li>
+                    <li><a asp-controller="Supervisors" asp-action="Index">Supervisors</a></li>
+                    <li><a asp-controller="Comments" asp-action="Index">Latest Comments</a></li>
+                    <li><a asp-controller="Absences" asp-action="Index">Absence Tracker</a></li>
+                    <li class="visible-xs"><a asp-controller="Home" asp-action="SearchByWorkstation"><i class="fas fa-search"></i> Search By <br /> Workstation Number</a></li>
+                    <li class="visible-xs"><a asp-controller="Home" asp-action="SearchByEmployeeNumber"><i class="fas fa-search"></i>Search By <br /> Employee Number</a></li>
+                    <li class="visible-xs">
+                        <a asp-controller="DisciplineStages"
+                           asp-action="index"><i class="fa fa-file" aria-hidden="true"></i> Discipline</a>
+                    </li>
+                    <li class="visible-xs">
+                        <a asp-controller="Home"
+                           asp-action="Flow"
+                           asp-route-id="2"> Flow 2</a>
+                    </li>
+                    <li class="visible-xs">
+                        <a asp-controller="Home"
+                           asp-action="Flow"
+                           asp-route-id="3">Flow 3</a>
+                    </li>
+                    <li class="visible-xs">
+                        <a asp-controller="Home"
+                           asp-action="Flow"
+                           asp-route-id="4"> Flow 4</a>
+                    </li>
+                    <li class="visible-xs">
+                        <a asp-controller="Home"
+                           asp-action="Flow"
+                           asp-route-id="1"> Copper Cell</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right sign-in ">
+
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li>
+                            <form method="post" asp-action="logout" asp-controller="account">
+                                <button type="submit" class="btn btn-link" style="padding-top: 14px"> <i class="fas fa-user"></i> @User.Identity.Name, Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <form method="get" asp-action="login" asp-controller="account">
+                                <button type="submit" class="btn btn-link"> Login </button>
+                            </form>
+                        </li>
+                        <li><a asp-action="register" asp-controller="account">Register</a></li>
+                    }
+
+                </ul>
+                <form asp-controller="Employees" asp-action="index" class=" navbar-form navbar-right nav-search ">
+                    <input type="text" class="form-control" placeholder="Enter Last Name" name="SearchString" value="@ViewData["currentFilter"]" />
+                    <input type="submit" value="Search" class="btn btn-default" />
+                    
+                    <a asp-controller="Employees"
+                       asp-action="index"
+                       asp-route-id="@ViewData["currentFilter"]"></a>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid main-area">
+        <div class="row ">
+            <div class=" col-sm-3 col-md-2 col-lg-2 sidebar hidden-xs" id="sidebar-content">
+                <ul class="nav nav-sidebar" id="sidebar-content">
+                    <li  id="overview"> <i class="far fa-folder"></i> Overview <span class="sr-only">(current)</span></li>
+                    <li>
+                        <a asp-controller="Home"
+                           asp-action="Flow"
+                           asp-route-id="2"> Flow 2</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home"
+                           asp-action="Flow"
+                           asp-route-id="3">Flow 3</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home"
+                           asp-action="Flow"
+                           asp-route-id="4"> Flow 4</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home"
+                           asp-action="Flow"
+                           asp-route-id="1"> Copper Cell</a>
+                    </li>
+                </ul>
+
+                <ul class="nav nav-sidebar ">
+                    <li class="active" id="overview"><i class="fas fa-bolt"></i> Quick Actions<span class="sr-only">(current)</span></li>
+                    <li> </li>
+                    <li>
+                        <a asp-controller="Home"
+                           asp-action="SearchByWorkstation"><i class="fas fa-search"></i> Search By <br /> Workstation Number</a>
+                    </li>
+                    <li></li>
+                    <li>
+                        <a asp-controller="Home"
+                           asp-action="SearchByEmployeeNumber"><i class="fas fa-search"></i>Search By <br /> Employee Number</a>
+                    </li>
+                    <li>
+                        <a asp-controller="DisciplineStages"
+                           asp-action="index"><i class="fa fa-file" aria-hidden="true"></i> Discipline</a>
+                    </li>
+
+                </ul>
+
+            </div>
+            <div class=" col-sm-9  col-sm-offset-4 col-md-offset-2 col-lg-offset-2 col-md-10 col-lg-10 main-panel">
+                @await Component.InvokeAsync("HomeIndexViewModel")
+
+                @RenderBody()
+                
+                <div style="padding-top:50px">
+                    <footer>
+                        <p>&copy; 2019 - EmployeesManagementApp <i class="fab fa-canadian-maple-leaf"></i> </p>
+                    </footer>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr />
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

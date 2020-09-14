@@ -1,0 +1,135 @@
+﻿@model EmployeesManagementApp.ViewModel.EmployeeCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmployeeNumber" class="control-label"></label>
+                <input asp-for="EmployeeNumber" class="form-control" />
+                <span asp-validation-for="EmployeeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PayLevel" class="control-label"></label>
+                <select class="form-control" asp-for="PayLevel">
+                    <option value="MS1">MS1</option>
+                    <option value="MS2">MS2</option>
+                    <option value="MT1">MT1</option>
+                    <option value="MT2">MT2</option>
+                    <option value="GF1" selected>GF1</option>
+                    <option value="GF2">GF2</option>
+                </select>
+                <span asp-validation-for="PayLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Utility" class="control-label"></label>
+                <select asp-for="Utility" class="form-control">
+                    <option value="false">False</option>
+                    <option value="true"> True</option>
+                </select>
+                <span asp-validation-for="Utility" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrimarySkill" class="control-label"></label>
+                <select class="form-control" asp-for="PrimarySkill">
+                    @foreach (var item in Model.Workstations)
+                    {
+                        if (item.Key == 0000)
+                        {
+                            <option value="@item.Key" selected>@item.Key @item.Value</option>
+                        }
+                        <option value="@item.Key">@item.Key @item.Value</option>
+                    }
+                </select>
+                <span asp-validation-for="PrimarySkill" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondarySkill" class="control-label"></label>
+                <select class="form-control" asp-for="SecondarySkill">
+
+                    @foreach (var item in Model.Workstations)
+                    {
+
+                        <option value="@item.Key">@item.Key @item.Value</option>
+                    }
+                </select>
+                <span asp-validation-for="SecondarySkill" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdSkill" class="control-label"></label>
+                <select class="form-control" asp-for="ThirdSkill">
+                    @foreach (var item in Model.Workstations)
+                    {
+                        <option value="@item.Key">@item.Key @item.Value</option>
+                    }
+                </select>
+                <span asp-validation-for="ThirdSkill" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoSkill" class="control-label"></label>
+                <input placeholder="Enter Scrapper or null" asp-for="NoSkill" class="form-control" />
+                <span asp-validation-for="NoSkill" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HireDate" class="control-label"></label>
+                <input asp-for="HireDate" class="form-control" value="@DateTime.Now" />
+                <span asp-validation-for="HireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="Shipping" class="control-label"></label>
+                <select asp-for="Shipping" class="form-control">
+                    <option value="false">False</option>
+                    <option value="true"> True</option>
+                </select>
+                <span asp-validation-for="Shipping" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="status" class="control-label"></label>
+                <select asp-for="status" class="form-control">
+                    <option value="false">Inactive</option>
+                    <option value="true"> Active</option>
+                </select>
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstAidCertified" class="control-label"></label>
+                <select asp-for="FirstAidCertified" class="form-control">
+                    <option value="false">Not Certified</option>
+                    <option value="true"> Certified</option>
+                </select>
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

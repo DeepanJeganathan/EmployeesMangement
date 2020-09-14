@@ -1,0 +1,145 @@
+﻿@model EmployeesManagementApp.ViewModel.HomeFlowViewModel
+
+@{
+    ViewData["Title"] = "SearchByWorkstation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr />
+<h4>Search By Workstation</h4>
+<hr />
+<div class="well-sm">
+
+
+
+    <form asp-action="SearchByWorkstation" method="get">
+        <div class="form-group">
+            <label>Enter Workstation Number : </label>
+            <input type="text" class="form-control" name="search" placeholder="Must be 4 digits eg.3101" value="@ViewData["currentFilter"]" />
+        </div>
+        <button type="submit" value="Search" class="btn btn-primary"> Search</button>
+
+        <a asp-action="SearchByWorkstation">Clear Search</a>
+    </form>
+
+</div>
+
+
+@*@if (Model.Workstations.Any())
+{
+    if (@ViewData["currentFilter"] != null)
+    {
+        <h5> Search results for : @ViewData["currentFilter"]</h5>
+    }
+
+
+   
+}*@
+
+<hr />
+<table class="table table-bordered table-hover ">
+
+    <thead>
+        <tr>
+            <th>
+                Employee Number
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+
+            </th>
+
+            <th>
+                Pay Level
+            </th>
+
+        </tr>
+    </thead>
+    <tbody class="searchByWorkstation-style">
+
+        @if (!(ViewData["currentFilter"] == null))
+        {
+
+        @foreach (var emp in Model.Employees)
+        {
+
+            @if (emp.PrimarySkill.Equals(int.Parse(ViewData["currentFilter"].ToString())))
+            {
+                <tr class="text-primary ">
+                    <td>
+                        <a asp-controller="employees" asp-action="Details" asp-route-id="@emp.EmployeeNumber"><i class="fas fa-lg fa-user text-primary "></i> </a>
+                        <a class="text-primary" asp-controller="Employees"
+                           asp-action="Details"
+                           asp-route-id="@emp.EmployeeNumber"> @Html.DisplayFor(model => emp.EmployeeNumber)</a> <span class="text-muted">Primary</span>
+<td>
+                        @Html.DisplayFor(model => emp.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => emp.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => emp.PayLevel)
+                    </td>
+
+                </tr>
+
+            }
+
+        @if (emp.SecondarySkill.Equals(int.Parse(ViewData["currentFilter"].ToString())) || emp.ThirdSkill.Equals(int.Parse(ViewData["currentFilter"].ToString())))
+        {
+            <tr class="text-primary">
+                <td>
+                    <a asp-controller="employees" asp-action="Details" asp-route-id="@emp.EmployeeNumber"><i class="fas fa-lg fa-user text-primary "></i> </a>
+                    <a class="text-primary" asp-controller="Employees"
+                       asp-action="Details"
+                       asp-route-id="@emp.EmployeeNumber"> @Html.DisplayFor(model => emp.EmployeeNumber)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => emp.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => emp.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => emp.PayLevel)
+                </td>
+
+            </tr>
+
+        }
+        }
+
+
+        }
+
+
+
+
+        @*<a asp-action="Edit" asp-route-id="@item.EmployeeNumber">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.EmployeeNumber">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.EmployeeNumber">Delete</a>*@
+
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
